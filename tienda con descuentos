@@ -1,0 +1,43 @@
+import java.util.Scanner;
+
+public class Ejercicio3 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        final double DESC_NORMAL = 0.0;
+        final double DESC_FRECUENTE = 0.10;
+        final double DESC_VIP = 0.20;
+        final double DESC_ADICIONAL = 0.05;
+
+        System.out.print("Nombre del cliente: ");
+        String cliente = scanner.nextLine();
+        System.out.print("Monto de la compra: ");
+        double monto = scanner.nextDouble();
+        System.out.print("Tipo de cliente (1: Normal, 2: Frecuente, 3: VIP): ");
+        int tipo = scanner.nextInt();
+
+        double pctDescuento = 0.0;
+
+        if (tipo == 1) {
+            pctDescuento = DESC_NORMAL;
+        } else if (tipo == 2) {
+            pctDescuento = DESC_FRECUENTE;
+        } else if (tipo == 3) {
+            pctDescuento = DESC_VIP;
+        } else {
+            System.out.println("Tipo de cliente no válido.");
+        }
+
+        if (monto > 2000) {
+            pctDescuento += DESC_ADICIONAL;
+        }
+
+        double montoDescuento = monto * pctDescuento;
+        double totalAPagar = monto - montoDescuento;
+
+        System.out.println("\n--- RESUMEN DE COMPRA ---");
+        System.out.println("Cliente: " + cliente);
+        System.out.println("Monto original: $" + monto);
+        System.out.println("Descuento total aplicado: " + (pctDescuento * 100) + "% ($" + montoDescuento + ")");
+        System.out.println("Total a pagar: $" + totalAPagar);
+    }
+}
